@@ -78,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
             Destroy(gameObject);
             SceneManager.LoadScene(3);
         }
+        if (collision.gameObject.tag == "CheckPoint")
+        {
+            SceneManager.LoadScene(4);
+        }
     }
     
 }
