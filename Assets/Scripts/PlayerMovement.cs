@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public bool playerMove = true;
     public static PlayerMovement instance;
+    public GameObject coineffects;
+    AudioSource coinAudio;
+    public AudioClip coinClip;
 
     public void Awake()
     {
@@ -26,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        coinAudio = GameObject.Find("SoundManager").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,14 +67,25 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRB.velocity = new Vector2(0, jumpSpeed);
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Coin")
+        if (collision.gameObject.tag == "Coin")
         {
-            Destroy(other.gameObject);
+            coineffects.SetActive(true);
+            Invoke("StopParticle", 1f);
+            Debug.Log("play");
+            Destroy(collision.gameObject);
+            coinAudio.clip = coinClip;
+            coinAudio.Play();
             Score.instance.IncrementScore();
         }
+        
     }
+    public void StopParticle()
+    {
+        coineffects.SetActive(false);
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Spike")

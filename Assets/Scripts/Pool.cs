@@ -8,7 +8,7 @@ public class Pool : MonoBehaviour
     public GameObject currentbullet;
     Stack<GameObject> BulletPool = new Stack<GameObject>();
     private static Pool instance;
-    Animator animator;
+    
 
 
 
@@ -30,7 +30,7 @@ public class Pool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        
 
     }
 
@@ -41,7 +41,6 @@ public class Pool : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetTrigger("Attack");
             CreateBullet();
         }
     }
