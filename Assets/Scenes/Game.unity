@@ -4615,9 +4615,9 @@ GameObject:
   - component: {fileID: 458139099}
   - component: {fileID: 458139098}
   - component: {fileID: 458139097}
+  - component: {fileID: 458139102}
   - component: {fileID: 458139100}
   - component: {fileID: 458139101}
-  - component: {fileID: 458139102}
   - component: {fileID: 458139103}
   m_Layer: 0
   m_Name: Player
@@ -4636,10 +4636,10 @@ Animator:
   m_GameObject: {fileID: 458139096}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5271e26ad5d6a964aa0739ecad938688, type: 2}
+  m_Controller: {fileID: 9100000, guid: 04e438343bf35e248a4709ec5cdbf24c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -4772,12 +4772,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9100d5fbc92944aa427e5caa139123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
-  jumpSpeed: 10
+  playerSpeed: 10
+  jumpSpeed: 20
+  animator: {fileID: 458139097}
   playerMove: 1
   coineffects: {fileID: 1977173637}
   coinClip: {fileID: 8300000, guid: e950c2efcabf6a445bfd6151d26679ef, type: 3}
-  PlayerDeadClip: {fileID: 8300000, guid: 207908161bea74a40ba0c129f0a752d8, type: 3}
 --- !u!114 &458139103
 MonoBehaviour:
   m_ObjectHideFlags: 0

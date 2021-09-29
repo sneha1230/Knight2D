@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerRB;
     public float playerSpeed;
     public float jumpSpeed;
-    Animator animator;
+    private Vector2 moveDirection;
+    public Animator animator;
     SpriteRenderer spriteRenderer;
     public bool playerMove = true;
     public static PlayerMovement instance;
@@ -35,37 +36,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var horizontalMovement = Input.GetAxis("Horizontal");
+        var verticalMovement = Input.GetAxis("Vertical");
+        var playerMovement = new Vector2(horizontalMovement,verticalMovement);
+        animator.SetFloat("Speed", playerMovement.magnitude);
         if (playerMove == true)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                playerRB.velocity = new Vector2(playerSpeed, 0);
-                spriteRenderer.flipX = false;
-
-                animator.SetTrigger("Walk");
-
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                playerRB.velocity = new Vector2(-playerSpeed, 0);
-                spriteRenderer.flipX = true;
-
-
-                animator.SetTrigger("Walk");
-
-            }
-
-           else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                Jump();
-                animator.SetTrigger("Jump");
-            }
+            transform.Translate(Vector3.right * Time.deltaTime * playerSpeed * horizontalMovement);
+            transform.Translate(Vector3.up * Time.deltaTime * jumpSpeed * verticalMovement);
         }
 
-    }
-    private void Jump()
-    {
-        playerRB.velocity = new Vector2(0, jumpSpeed);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
